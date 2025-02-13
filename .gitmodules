@@ -1,3 +1,6 @@
 [submodule "newlib-cygwin"]
 	path = newlib-cygwin
 	url = git@github.com:4ms/newlib
+[submodule "gcc"]
+	path = gcc
+	url = https://github.com/gcc-mirror/gcc
