@@ -13,7 +13,7 @@ INSTALL_DIR ?= install
 # -mvectorize-with-neon-quad
 # -funsafe-math-optimizations
 
-CFLAGS_FOR_TARGET = -DAARCH=32 -mcpu=cortex-a7 -mtune=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mthumb-interwork -mvectorize-with-neon-quad -Wno-parentheses
+CFLAGS_FOR_TARGET = -DAARCH=32 -mcpu=cortex-a7 -mtune=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mthumb-interwork -mvectorize-with-neon-quad -Wno-parentheses -fPIC
 CPPFLAGS_FOR_TARGET = 
 # CPPFLAGS_FOR_TARGET = -I"/home/dann/4ms/ca64/circle-stdlib/libs/circle/include" -I"/home/dann/4ms/ca64/circle-stdlib/libs/circle/addon" -I"/home/dann/4ms/ca64/circle-stdlib/include"
 CC_FOR_TARGET = arm-none-eabi-gcc
