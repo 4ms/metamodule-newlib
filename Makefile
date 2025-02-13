@@ -27,12 +27,6 @@ OBJCOPY_FOR_TARGET = arm-none-eabi-gcc-objcopy
 OBJDUMP_FOR_TARGET = arm-none-eabi-gcc-objdump
 
 
-config: $(INSTALL_DIR)
-	mkdir -p $(INSTALL_DIR)
-	cd $(BUILD_DIR) && $(PWD)/newlib-cygwin/configure --target arm-none-eabi --disable-multilib --prefix $(PWD)/$(INSTALL_DIR)
-
-$(BUILD_DIR)/Makefile: config
-
 all: $(BUILD_DIR)/Makefile
 	CPPFLAGS_FOR_TARGET='$(CPPFLAGS_FOR_TARGET)' \
 	CC_FOR_TARGET='$(CC_FOR_TARGET)' \
@@ -46,6 +40,13 @@ all: $(BUILD_DIR)/Makefile
 	OBJDUMP_FOR_TARGET='$(OBJDUMP_FOR_TARGET)' \
 	$(MAKE) -C $(BUILD_DIR) && \
 	$(MAKE) -C $(BUILD_DIR) install
+
+config: $(INSTALL_DIR) $(BUILD_DIR)
+	mkdir -p $(INSTALL_DIR)
+	cd $(BUILD_DIR) && $(PWD)/newlib-cygwin/configure --target arm-none-eabi --disable-multilib --prefix $(PWD)/$(INSTALL_DIR)
+
+$(BUILD_DIR)/Makefile: config
+
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
